@@ -1,0 +1,155 @@
+@import "reset.css";
+@import "variables.scss";
+
+.container   {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+    
+.header {
+    background-color: #FFFFFF;
+}
+
+.header .header-wrapper {
+    position: fixed;
+    top: 0;
+    display: flex;
+    min-height: 116px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    width: 1120px;
+}
+
+.header .header-font {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+    text-transform: uppercase;
+    color: #5C6A79;
+}
+
+.db {
+    display: block;
+}
+
+.header .header-logo-text {
+    font-size: 24px;
+    line-height: 29px;
+    color: #1C2A39;
+} 
+
+/*    .header .nav {
+    margin-left: 95px;
+}*/
+
+.header .header-ref-list {
+    width: 372px;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+}
+
+.header .header-ref-text {
+    color: #5C6A79;
+    text-decoration: none;
+}
+
+.header .header-font-selected {
+    font-weight: 900;
+    color: #1C2A39;
+}
+
+.header .header-icons-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+}
+
+.header .header-user-icon {
+    width: 12px;
+    height: 15px;
+    background-image: url('icons/user.svg');
+    background-size: 12px 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header .header-search-icon {
+    width: 15px;
+    height: 15px;
+    background-image: url('icons/search.svg');
+    background-size: 15px 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header .header-shop-bag-icon {
+    position: relative;
+    width: 14px;
+    height: 17px;
+    background-image: url('icons/shop\ bag.svg');
+    background-size: 14px 17px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header .header-shop-bag-icon::after {
+    position: absolute;
+    content: '3';
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 13px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    background: #FF353A;
+    border-radius: 7px;
+    width: 13px;
+    height: 13px;
+    top: 8px;
+    left: 4px;
+}
+
+.main {
+    min-height: 836px;
+}
+
+.section1 {
+    margin-top: 116px;
+    background-color: #fff;
+}
+
+.main .section1-img {
+    background-image: url('images/img1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 1120px;
+    height: 702px;
+}
+
+.main .section1-dots-container {
+    width: 56px;
+    height: 12px;
+    margin: 0 auto;
+    margin-top: 17px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main .section1-dot {
+    width: 12px;
+    height: 12px;
+    background: #EFEEF6;
+    border-radius:  6px;
+    cursor: pointer;
+}
+
+.main .section1-dot-selected {
+    background: #9E98DC;
+}

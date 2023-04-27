@@ -1,0 +1,37 @@
+{
+  "name": "googlebooksapishop",
+  "version": "1.0.0",
+  "description": "Bookstore on Google Books Api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-scss": "sass src/styles.scss src/styles.css",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IgorVasilyev1979/BookstoreGoogleBooksApi.git"
+  },
+  "keywords": [
+    "googlebooksapi"
+  ],
+  "author": "Vasilyev Igor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IgorVasilyev1979/BookstoreGoogleBooksApi/issues"
+  },
+  "homepage": "https://github.com/IgorVasilyev1979/BookstoreGoogleBooksApi#readme",
+  "devDependencies": {
+    "css-minimizer-webpack-plugin": "^5.0.0",
+    "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.7.5",
+    "sass": "^1.62.1",
+    "terser-webpack-plugin": "^5.3.7",
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2"
+  },
+  "dependencies": {
+    "css-loader": "^6.7.3",
+    "style-loader": "^3.3.2"
+  }
+}
