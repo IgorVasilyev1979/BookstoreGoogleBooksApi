@@ -1,10 +1,17 @@
 @import "reset.css";
 @import "variables.scss";
 
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .container   {
     width: 100%;
     max-width: 1120px;
     margin: 0 auto;
+    position: relative;
 }
     
 .header {
@@ -249,4 +256,53 @@
     background-repeat: no-repeat;
     width: 137px;
     height: 273px;
+}
+
+.section2 {
+    min-height: 710px;
+    position: relative;
+}
+
+.section2 .category-list {
+    background: #EFEEF6;
+    position: absolute;
+    left: -160px;
+    width: 416px;
+    padding-top: 45px;
+    padding-left: 160px;
+    padding-bottom: 58px;
+}
+
+.section2 .category-list-li {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: capitalize;
+    color: #5C6A79;
+    margin-bottom: 23px;
+}
+
+.section2 .category-list-li-selected {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: capitalize;
+    color: #1C2A39;
+    position: relative;
+}
+
+.section2 .category-list-li-selected::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: -20px;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background: #756AD3;
 }
