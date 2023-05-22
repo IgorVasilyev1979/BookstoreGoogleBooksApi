@@ -123,3 +123,91 @@ document.addEventListener("DOMContentLoaded", function() {
 initSlider(sliderOptions);
 });
 
+function showCards(prevCatObj, currentCategoryObj) {
+  prevCatObj.classList.remove("category-list-li-selected");
+  currentCategoryObj.classList.add("category-list-li-selected");
+  prevCategoryObj = currentCategoryObj;
+}
+
+let prevCategoryObj = document.querySelector('.category-list-li1-js');
+
+const cat1 = document.querySelector('.category-list-li1-js');
+const cat2 = document.querySelector('.category-list-li2-js');
+const cat3 = document.querySelector('.category-list-li3-js');
+const cat4 = document.querySelector('.category-list-li4-js');
+const cat5 = document.querySelector('.category-list-li5-js');
+const cat6 = document.querySelector('.category-list-li6-js');
+const cat7 = document.querySelector('.category-list-li7-js');
+const cat8 = document.querySelector('.category-list-li8-js');
+const cat9 = document.querySelector('.category-list-li9-js');
+const cat10 = document.querySelector('.category-list-li10-js');
+const cat11 = document.querySelector('.category-list-li11-js');
+const cat12 = document.querySelector('.category-list-li12-js');
+const cat13 = document.querySelector('.category-list-li13-js');
+const cat14 = document.querySelector('.category-list-li14-js');
+const cat15 = document.querySelector('.category-list-li15-js');
+const cat16 = document.querySelector('.category-list-li16-js');
+
+cat1.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat2.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat3.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat4.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat5.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat6.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat7.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat8.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat9.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat10.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat11.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat12.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat13.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat14.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat15.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})
+
+cat16.addEventListener('click', function() {
+  showCards(prevCategoryObj, this);
+})

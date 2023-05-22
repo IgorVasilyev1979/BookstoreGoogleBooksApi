@@ -263,6 +263,7 @@
 .section2 .category-list {
   background: #EFEEF6;
   position: absolute;
+  z-index: 0;
   left: -160px;
   width: 416px;
   padding-top: 45px;
@@ -279,6 +280,7 @@
   text-transform: capitalize;
   color: #5C6A79;
   margin-bottom: 23px;
+  cursor: pointer;
 }
 
 .section2 .category-list-li-selected {
@@ -302,6 +304,41 @@
   height: 6px;
   border-radius: 3px;
   background: #756AD3;
+}
+
+.section2 .cards-container {
+  margin-left: 196px;
+  min-height: 1234px;
+  background-color: rgb(190, 184, 184);
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.section2 .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 40px 0;
+}
+
+.section2 .card {
+  background-color: rgb(93, 170, 93);
+  width: 415px;
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.section2 .img {
+  width: 212px;
+  background-color: rgb(212, 182, 187);
+}
+
+.section2 .desc {
+  width: 176px;
+  background-color: rgb(211, 166, 173);
 }
 
 /*# sourceMappingURL=styles.css.map */
