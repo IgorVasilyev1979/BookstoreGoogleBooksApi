@@ -309,7 +309,6 @@
 .section2 .cards-container {
   margin-left: 196px;
   min-height: 1234px;
-  background-color: rgb(190, 184, 184);
   z-index: 1;
   position: relative;
   display: flex;
@@ -324,7 +323,6 @@
 }
 
 .section2 .card {
-  background-color: rgb(93, 170, 93);
   width: 415px;
   height: 300px;
   display: flex;
@@ -333,12 +331,112 @@
 
 .section2 .img {
   width: 212px;
-  background-color: rgb(212, 182, 187);
+  background: #EEECEC;
+  box-shadow: 0px 24px 36px rgba(53, 49, 84, 0.28);
 }
 
 .section2 .desc {
   width: 176px;
-  background-color: rgb(211, 166, 173);
+}
+
+.section2 .card .author {
+  margin-top: 49px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  text-transform: capitalize;
+  color: #5C6A79;
+}
+
+.section2 .card .book-title {
+  margin-top: 4px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1C2A39;
+}
+
+.section2 .card .rating {
+  margin-top: 4px;
+  width: 127px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.section2 .card .book-desc {
+  margin-top: 16px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  text-transform: capitalize;
+  color: #5C6A79;
+}
+
+.section2 .card .price {
+  margin-top: 16px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: #1C2A39;
+}
+
+.section2 .card .buy-btn {
+  margin-top: 16px;
+  width: 176px;
+  height: 45px;
+  border: 1px solid #4C3DB2;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 10px;
+  text-transform: uppercase;
+  color: #4C3DB2;
+}
+
+.section2 .card .buy-btn-in-the-card {
+  border: 1px solid #EEEDF5;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 10px;
+  text-transform: uppercase;
+  color: #5C6A79;
+}
+
+.section2 .card .pale-stars {
+  width: 60px;
+  height: 12px;
+  background-image: url("images/paleStar.png");
+}
+
+.section2 .card .stars {
+  position: absolute;
+  height: 12px;
+  background-image: url("images/Star.png");
+}
+
+.section2 .card .review-amount {
+  margin-left: 6px;
+  height: 14px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #5C6A79;
 }
 
 /*# sourceMappingURL=styles.css.map */

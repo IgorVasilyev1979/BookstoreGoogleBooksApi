@@ -123,10 +123,123 @@ document.addEventListener("DOMContentLoaded", function() {
 initSlider(sliderOptions);
 });
 
+const cardsContainer = document.querySelector('.cards-container-js');
+
 function showCards(prevCatObj, currentCategoryObj) {
   prevCatObj.classList.remove("category-list-li-selected");
   currentCategoryObj.classList.add("category-list-li-selected");
   prevCategoryObj = currentCategoryObj;
+
+  
+
+  cardsContainer.innerHTML = `<div class="row">
+                                <div class="card">
+                                    <div class="img"><img src="img1.png" alt=""></div>
+                                    <div class="desc">
+                                        <p class="author">Kevin Kwan</p>
+                                        <p class="book-title">Crazy rich asians</p>
+                                        <div class="rating">
+                                            <div class="pale-stars"></div>
+                                            <div class="stars" style="width: 42px"></div>
+                                            <div class="review-amount">252 review</div>
+                                        </div>
+                                        <div class="book-desc">the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...</div>
+                                        <p class="price">$4.99</p>
+                                        <form action="">
+                                            <button class="buy-btn">buy now</button>    
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="img"><img src="img2.png" alt=""></div>
+                                    <div class="desc">
+                                        <p class="author">Margaret Atwood</p>
+                                        <p class="book-title">The handmaid’s tale</p>
+                                        <div class="rating">
+                                            <div class="pale-stars"></div>
+                                            <div class="stars" style="width: 35px"></div>
+                                            <div class="review-amount">1,1M review</div>
+                                        </div>
+                                        <div class="book-desc">This novel can be interpreted as a double narrative, Offred's tale and the handmaids' tales. The night...</div>
+                                        <p class="price">$6.99</p>
+                                        <form action="">
+                                            <button class="buy-btn buy-btn-in-the-card">In the cart</button>    
+                                        </form>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="card">
+                                    <div class="img"><img src="img3.png" alt=""></div>
+                                    <div class="desc">
+                                        <p class="author">Aldous Huxley</p>
+                                        <p class="book-title">Brave new world</p>
+                                        <div class="rating">
+                                            <div class="pale-stars"></div>
+                                            <div class="stars" style="width: 55px"></div>
+                                            <div class="review-amount">1,3M review</div>
+                                        </div>
+                                        <div class="book-desc">dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in...</div>
+                                        <p class="price">$12.43</p>
+                                        <form action="">
+                                            <button class="buy-btn">buy now</button>    
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="img"><img src="img4.png" alt=""></div>
+                                    <div class="desc">
+                                        <p class="author">Tara Westover</p>
+                                        <p class="book-title">Educated</p>
+                                        <div class="rating">
+                                            <div class="pale-stars"></div>
+                                            <div class="stars" style="width: 27px"></div>
+                                            <div class="review-amount">364 review</div>
+                                        </div>
+                                        <div class="book-desc">It is a tale of fierce family loyalty and of the grief that comes with severing the closest of ties. With...</div>
+                                        <p class="price">$12.68</p>
+                                        <form action="">
+                                            <button class="buy-btn">buy now</button>    
+                                        </form>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="card">
+                                    <div class="img"><img src="img5.png" alt=""></div>
+                                    <div class="desc">
+                                        <p class="author">Marianne Fritz</p>
+                                        <p class="book-title">The weight of things</p>
+                                        <div class="rating">
+                                            <div class="pale-stars"></div>
+                                            <div class="stars" style="width: 60px"></div>
+                                            <div class="review-amount">353 review</div>
+                                        </div>
+                                        <div class="book-desc">You discover not an eccentric fluke of literary nature but rather a brilliant and masterful satiris...</div>
+                                        <p class="price">$18.23</p>
+                                        <form action="">
+                                            <button class="buy-btn">buy now</button>    
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="img"><img src="img6.png" alt=""></div>
+                                    <div class="desc">
+                                        <p class="author">Chris Power</p>
+                                        <p class="book-title">Mothers stories</p>
+                                        <div class="rating">
+                                            <div class="pale-stars"></div>
+                                            <div class="stars" style="width: 30px"></div>
+                                            <div class="review-amount">454 review</div>
+                                        </div>
+                                        <div class="book-desc">the stories in Mothers lay bare the emotional and psychic damage of life, love, and abandonment...</div>
+                                        <p class="price">$12.35</p>
+                                        <form action="">
+                                            <button class="buy-btn">buy now</button>    
+                                        </form>
+                                    </div>
+                                </div>
+                              </div>`;
 }
 
 let prevCategoryObj = document.querySelector('.category-list-li1-js');
