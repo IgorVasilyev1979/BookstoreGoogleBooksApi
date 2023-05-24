@@ -123,123 +123,492 @@ document.addEventListener("DOMContentLoaded", function() {
 initSlider(sliderOptions);
 });
 
+let booksCategory = "";
+let startIndex = 6;
 const cardsContainer = document.querySelector('.cards-container-js');
+let httpResponseStatus = 0;
+let books = [{
+  url: "",
+  authors: "",
+  title: "",
+  rating: 0,
+  ratingStyle: "",
+  desc: "",
+  price: "",
+  priceStyle: ""
+},
+{
+  url: "",
+  authors: "",
+  title: "",
+  rating: 0,
+  ratingStyle: "",
+  desc: "",
+  price: "",
+  priceStyle: ""
+},
+{
+  url: "",
+  authors: "",
+  title: "",
+  rating: 0,
+  ratingStyle: "",
+  desc: "",
+  price: "",
+  priceStyle: ""
+},
+{
+  url: "",
+  authors: "",
+  title: "",
+  rating: 0,
+  ratingStyle: "",
+  desc: "",
+  price: "",
+  priceStyle: ""
+},
+{
+  url: "",
+  authors: "",
+  title: "",
+  rating: 0,
+  ratingStyle: "",
+  desc: "",
+  price: "",
+  priceStyle: ""
+},
+{
+  url: "",
+  authors: "",
+  title: "",
+  rating: 0,
+  ratingStyle: "",
+  desc: "",
+  price: "",
+  priceStyle: ""
+}
+];
 
-function showCards(prevCatObj, currentCategoryObj) {
+const useRequest = (categoryReq) => {
+  return fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${categoryReq}"&key=AIzaSyDCuQISkKdOQ0rqxafunnipXRhYnqKOVnE&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
+    .then((response) => {
+      console.log('response.status', response.status);
+      httpResponseStatus = response.status;
+      return response.json();
+    })
+    .then((json) => { return json; })
+    .catch(() => { console.log('error') });
+}
+
+async function showCards(prevCatObj, currentCategoryObj, categoryReq) {
+
+  startIndex = 6;
   prevCatObj.classList.remove("category-list-li-selected");
   currentCategoryObj.classList.add("category-list-li-selected");
   prevCategoryObj = currentCategoryObj;
-
   
+  const requestResult = await useRequest(categoryReq);
+  console.log('requestResult', requestResult);
 
-  cardsContainer.innerHTML = `<div class="row">
-                                <div class="card">
-                                    <div class="img"><img src="img1.png" alt=""></div>
-                                    <div class="desc">
-                                        <p class="author">Kevin Kwan</p>
-                                        <p class="book-title">Crazy rich asians</p>
-                                        <div class="rating">
-                                            <div class="pale-stars"></div>
-                                            <div class="stars" style="width: 42px"></div>
-                                            <div class="review-amount">252 review</div>
-                                        </div>
-                                        <div class="book-desc">the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...</div>
-                                        <p class="price">$4.99</p>
-                                        <form action="">
-                                            <button class="buy-btn">buy now</button>    
-                                        </form>
-                                    </div>
+  function limitStr(str, n, symb) {
+    if (!n && !symb) return str;
+    symb = symb || '...';
+    if(str.length < n) symb = "";
+    return str.substr(0, n - symb.length) + symb;
+  }
+
+  if(httpResponseStatus == 200) {
+
+    try {books[0].url = requestResult.items[0].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[0].volumeInfo.imageLinks.thumbnail;} catch {books[0].url = "default-book.png";}
+    try {books[1].url = requestResult.items[1].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[1].volumeInfo.imageLinks.thumbnail;} catch {books[1].url = "default-book.png";}
+    try {books[2].url = requestResult.items[2].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[2].volumeInfo.imageLinks.thumbnail;} catch {books[2].url = "default-book.png";}
+    try {books[3].url = requestResult.items[3].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[3].volumeInfo.imageLinks.thumbnail;} catch {books[3].url = "default-book.png";}
+    try {books[4].url = requestResult.items[4].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[4].volumeInfo.imageLinks.thumbnail;} catch {books[4].url = "default-book.png";}
+    try {books[5].url = requestResult.items[5].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[5].volumeInfo.imageLinks.thumbnail;} catch {books[5].url = "default-book.png";}
+
+    try {
+          books[0].authors = "";
+          requestResult.items[0].volumeInfo.authors.forEach(author => books[0].authors += author + ", ");
+          books[0].authors = books[0].authors.slice(0, -2);
+          books[0].authors = limitStr(books[0].authors, 45);
+        } catch {books[0].authors = "";}
+    try {
+          books[1].authors = "";
+          requestResult.items[1].volumeInfo.authors.forEach(author => books[1].authors += author + ", ");
+          books[1].authors = books[1].authors.slice(0, -2);
+          books[1].authors = limitStr(books[1].authors, 45);
+        } catch {books[1].authors = "";}
+    try {
+          books[2].authors = "";
+          requestResult.items[2].volumeInfo.authors.forEach(author => books[2].authors += author + ", ");
+          books[2].authors = books[2].authors.slice(0, -2);
+          books[2].authors = limitStr(books[2].authors, 45);
+        } catch {books[2].authors = "";}
+    try {
+          books[3].authors = "";
+          requestResult.items[3].volumeInfo.authors.forEach(author => books[3].authors += author + ", ");
+          books[3].authors = books[3].authors.slice(0, -2);
+          books[3].authors = limitStr(books[3].authors, 45);
+        } catch {books[3].authors = "";}
+    try {
+          books[4].authors = "";
+          requestResult.items[4].volumeInfo.authors.forEach(author => books[4].authors += author + ", ");
+          books[4].authors = books[4].authors.slice(0, -2);
+          books[4].authors = limitStr(books[4].authors, 45);
+        } catch {books[4].authors = "";}
+    try {
+          books[5].authors = "";
+          requestResult.items[5].volumeInfo.authors.forEach(author => books[5].authors += author + ", ");
+          books[5].authors = books[5].authors.slice(0, -2);
+          books[5].authors = limitStr(books[5].authors, 45);
+        } catch {books[5].authors = "";}
+
+    try {books[0].title = requestResult.items[0].volumeInfo.title; books[0].title = limitStr(books[0].title, 45);} catch {books[0].title = "";}
+    try {books[1].title = requestResult.items[1].volumeInfo.title; books[1].title = limitStr(books[1].title, 45);} catch {books[1].title = "";}
+    try {books[2].title = requestResult.items[2].volumeInfo.title; books[2].title = limitStr(books[2].title, 45);} catch {books[2].title = "";}
+    try {books[3].title = requestResult.items[3].volumeInfo.title; books[3].title = limitStr(books[3].title, 45);} catch {books[3].title = "";}
+    try {books[4].title = requestResult.items[4].volumeInfo.title; books[4].title = limitStr(books[4].title, 45);} catch {books[4].title = "";}
+    try {books[5].title = requestResult.items[5].volumeInfo.title; books[5].title = limitStr(books[5].title, 45);} catch {books[5].title = "";}
+
+    try {books[0].ratingStyle = requestResult.items[0].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[0].ratingStyle = 'style="display:none"';}
+    try {books[1].ratingStyle = requestResult.items[1].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[1].ratingStyle = 'style="display:none"';}
+    try {books[2].ratingStyle = requestResult.items[2].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[2].ratingStyle = 'style="display:none"';}
+    try {books[3].ratingStyle = requestResult.items[3].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[3].ratingStyle = 'style="display:none"';}
+    try {books[4].ratingStyle = requestResult.items[4].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[4].ratingStyle = 'style="display:none"';}
+    try {books[5].ratingStyle = requestResult.items[5].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[5].ratingStyle = 'style="display:none"';}
+    
+    try {books[0].desc = requestResult.items[0].volumeInfo.description; books[0].desc = limitStr(books[0].desc, 100);} catch {books[0].desc = "";}
+    try {books[1].desc = requestResult.items[1].volumeInfo.description; books[1].desc = limitStr(books[1].desc, 100);} catch {books[1].desc = "";}
+    try {books[2].desc = requestResult.items[2].volumeInfo.description; books[2].desc = limitStr(books[2].desc, 100);} catch {books[2].desc = "";}
+    try {books[3].desc = requestResult.items[3].volumeInfo.description; books[3].desc = limitStr(books[3].desc, 100);} catch {books[3].desc = "";}
+    try {books[4].desc = requestResult.items[4].volumeInfo.description; books[4].desc = limitStr(books[4].desc, 100);} catch {books[4].desc = "";}
+    try {books[5].desc = requestResult.items[5].volumeInfo.description; books[5].desc = limitStr(books[5].desc, 100);} catch {books[5].desc = "";}
+
+    try {books[0].price = requestResult.items[0].saleInfo.listPrice.amount.toString() + " " + requestResult.items[0].saleInfo.listPrice.currencyCode;} catch {books[0].price = "";}
+    try {books[1].price = requestResult.items[1].saleInfo.listPrice.amount.toString() + " " + requestResult.items[1].saleInfo.listPrice.currencyCode;} catch {books[1].price = "";}
+    try {books[2].price = requestResult.items[2].saleInfo.listPrice.amount.toString() + " " + requestResult.items[2].saleInfo.listPrice.currencyCode;} catch {books[2].price = "";}
+    try {books[3].price = requestResult.items[3].saleInfo.listPrice.amount.toString() + " " + requestResult.items[3].saleInfo.listPrice.currencyCode;} catch {books[3].price = "";}
+    try {books[4].price = requestResult.items[4].saleInfo.listPrice.amount.toString() + " " + requestResult.items[4].saleInfo.listPrice.currencyCode;} catch {books[4].price = "";}
+    try {books[5].price = requestResult.items[5].saleInfo.listPrice.amount.toString() + " " + requestResult.items[5].saleInfo.listPrice.currencyCode;} catch {books[5].price = "";}
+
+    cardsContainer.innerHTML = `<div class="row">
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[0].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[0].authors}</p>
+                                          <p class="book-title">${books[0].title}</p>
+                                          <div class="rating" ${books[0].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">252 review</div>
+                                          </div>
+                                          <p class="book-desc">${books[0].desc}</p>
+                                          <p class="price">${books[0].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[1].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[1].authors}</p>
+                                          <p class="book-title">${books[1].title}</p>
+                                          <div class="rating" ${books[1].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">1,1M review</div>
+                                          </div>
+                                          <p class="book-desc">${books[1].desc}</p>
+                                          <p class="price">${books[1].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn buy-btn-in-the-card">In the cart</button>    
+                                          </form>
+                                      </div>
+                                  </div>
                                 </div>
-                                <div class="card">
-                                    <div class="img"><img src="img2.png" alt=""></div>
-                                    <div class="desc">
-                                        <p class="author">Margaret Atwood</p>
-                                        <p class="book-title">The handmaid’s tale</p>
-                                        <div class="rating">
-                                            <div class="pale-stars"></div>
-                                            <div class="stars" style="width: 35px"></div>
-                                            <div class="review-amount">1,1M review</div>
-                                        </div>
-                                        <div class="book-desc">This novel can be interpreted as a double narrative, Offred's tale and the handmaids' tales. The night...</div>
-                                        <p class="price">$6.99</p>
-                                        <form action="">
-                                            <button class="buy-btn buy-btn-in-the-card">In the cart</button>    
-                                        </form>
-                                    </div>
+                                <div class="row">
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[2].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[2].authors}</p>
+                                          <p class="book-title">${books[2].title}</p>
+                                          <div class="rating" ${books[2].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">1,3M review</div>
+                                          </div>
+                                          <p class="book-desc">${books[2].desc}</p>
+                                          <p class="price">${books[2].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[3].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[3].authors}</p>
+                                          <p class="book-title">${books[3].title}</p>
+                                          <div class="rating" ${books[3].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">364 review</div>
+                                          </div>
+                                          <p class="book-desc">${books[3].desc}</p>
+                                          <p class="price">${books[3].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="row">
-                                <div class="card">
-                                    <div class="img"><img src="img3.png" alt=""></div>
-                                    <div class="desc">
-                                        <p class="author">Aldous Huxley</p>
-                                        <p class="book-title">Brave new world</p>
-                                        <div class="rating">
-                                            <div class="pale-stars"></div>
-                                            <div class="stars" style="width: 55px"></div>
-                                            <div class="review-amount">1,3M review</div>
-                                        </div>
-                                        <div class="book-desc">dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in...</div>
-                                        <p class="price">$12.43</p>
-                                        <form action="">
-                                            <button class="buy-btn">buy now</button>    
-                                        </form>
-                                    </div>
+                                <div class="row">
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[4].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[4].authors}</p>
+                                          <p class="book-title">${books[4].title}</p>
+                                          <div class="rating" ${books[4].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">353 review</div>
+                                          </div>
+                                          <p class="book-desc">${books[4].desc}</p>
+                                          <p class="price">${books[4].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[5].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[5].authors}</p>
+                                          <p class="book-title">${books[5].title}</p>
+                                          <div class="rating" ${books[5].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">454 review</div>
+                                          </div>
+                                          <p class="book-desc">${books[5].desc}</p>
+                                          <p class="price">${books[5].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
+                                </div>`;
+  }
+}
+
+const useRequestMore = () => {
+  return fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${booksCategory}"&key=AIzaSyDCuQISkKdOQ0rqxafunnipXRhYnqKOVnE&printType=books&startIndex=${startIndex.toString()}&maxResults=6&langRestrict=en`)
+    .then((response) => {
+      console.log('response.status', response.status);
+      httpResponseStatus = response.status;
+      return response.json();
+    })
+    .then((json) => { return json; })
+    .catch(() => { console.log('error') });
+}
+
+async function showMoreCards() {
+  
+  const requestResult = await useRequestMore();
+  console.log('requestResult', requestResult);
+  startIndex += 6;
+
+  function limitStr(str, n, symb) {
+    if (!n && !symb) return str;
+    symb = symb || '...';
+    if(str.length < n) symb = "";
+    return str.substr(0, n - symb.length) + symb;
+  }
+
+  if(httpResponseStatus == 200) {
+
+    try {books[0].url = requestResult.items[0].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[0].volumeInfo.imageLinks.thumbnail;} catch {books[0].url = "default-book.png";}
+    try {books[1].url = requestResult.items[1].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[1].volumeInfo.imageLinks.thumbnail;} catch {books[1].url = "default-book.png";}
+    try {books[2].url = requestResult.items[2].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[2].volumeInfo.imageLinks.thumbnail;} catch {books[2].url = "default-book.png";}
+    try {books[3].url = requestResult.items[3].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[3].volumeInfo.imageLinks.thumbnail;} catch {books[3].url = "default-book.png";}
+    try {books[4].url = requestResult.items[4].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[4].volumeInfo.imageLinks.thumbnail;} catch {books[4].url = "default-book.png";}
+    try {books[5].url = requestResult.items[5].volumeInfo.imageLinks.thumbnail.length == 0? "default-book.png" : requestResult.items[5].volumeInfo.imageLinks.thumbnail;} catch {books[5].url = "default-book.png";}
+
+    try {
+          books[0].authors = "";
+          requestResult.items[0].volumeInfo.authors.forEach(author => books[0].authors += author + ", ");
+          books[0].authors = books[0].authors.slice(0, -2);
+          books[0].authors = limitStr(books[0].authors, 45);
+        } catch {books[0].authors = "";}
+    try {
+          books[1].authors = "";
+          requestResult.items[1].volumeInfo.authors.forEach(author => books[1].authors += author + ", ");
+          books[1].authors = books[1].authors.slice(0, -2);
+          books[1].authors = limitStr(books[1].authors, 45);
+        } catch {books[1].authors = "";}
+    try {
+          books[2].authors = "";
+          requestResult.items[2].volumeInfo.authors.forEach(author => books[2].authors += author + ", ");
+          books[2].authors = books[2].authors.slice(0, -2);
+          books[2].authors = limitStr(books[2].authors, 45);
+        } catch {books[2].authors = "";}
+    try {
+          books[3].authors = "";
+          requestResult.items[3].volumeInfo.authors.forEach(author => books[3].authors += author + ", ");
+          books[3].authors = books[3].authors.slice(0, -2);
+          books[3].authors = limitStr(books[3].authors, 45);
+        } catch {books[3].authors = "";}
+    try {
+          books[4].authors = "";
+          requestResult.items[4].volumeInfo.authors.forEach(author => books[4].authors += author + ", ");
+          books[4].authors = books[4].authors.slice(0, -2);
+          books[4].authors = limitStr(books[4].authors, 45);
+        } catch {books[4].authors = "";}
+    try {
+          books[5].authors = "";
+          requestResult.items[5].volumeInfo.authors.forEach(author => books[5].authors += author + ", ");
+          books[5].authors = books[5].authors.slice(0, -2);
+          books[5].authors = limitStr(books[5].authors, 45);
+        } catch {books[5].authors = "";}
+
+    try {books[0].title = requestResult.items[0].volumeInfo.title; books[0].title = limitStr(books[0].title, 45);} catch {books[0].title = "";}
+    try {books[1].title = requestResult.items[1].volumeInfo.title; books[1].title = limitStr(books[1].title, 45);} catch {books[1].title = "";}
+    try {books[2].title = requestResult.items[2].volumeInfo.title; books[2].title = limitStr(books[2].title, 45);} catch {books[2].title = "";}
+    try {books[3].title = requestResult.items[3].volumeInfo.title; books[3].title = limitStr(books[3].title, 45);} catch {books[3].title = "";}
+    try {books[4].title = requestResult.items[4].volumeInfo.title; books[4].title = limitStr(books[4].title, 45);} catch {books[4].title = "";}
+    try {books[5].title = requestResult.items[5].volumeInfo.title; books[5].title = limitStr(books[5].title, 45);} catch {books[5].title = "";}
+
+    try {books[0].ratingStyle = requestResult.items[0].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[0].ratingStyle = 'style="display:none"';}
+    try {books[1].ratingStyle = requestResult.items[1].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[1].ratingStyle = 'style="display:none"';}
+    try {books[2].ratingStyle = requestResult.items[2].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[2].ratingStyle = 'style="display:none"';}
+    try {books[3].ratingStyle = requestResult.items[3].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[3].ratingStyle = 'style="display:none"';}
+    try {books[4].ratingStyle = requestResult.items[4].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[4].ratingStyle = 'style="display:none"';}
+    try {books[5].ratingStyle = requestResult.items[5].volumeInfo.maturityRating == "NOT_MATURE"? 'style="display:none"': "";} catch {books[5].ratingStyle = 'style="display:none"';}
+    
+    try {books[0].desc = requestResult.items[0].volumeInfo.description; books[0].desc = limitStr(books[0].desc, 100);} catch {books[0].desc = "";}
+    try {books[1].desc = requestResult.items[1].volumeInfo.description; books[1].desc = limitStr(books[1].desc, 100);} catch {books[1].desc = "";}
+    try {books[2].desc = requestResult.items[2].volumeInfo.description; books[2].desc = limitStr(books[2].desc, 100);} catch {books[2].desc = "";}
+    try {books[3].desc = requestResult.items[3].volumeInfo.description; books[3].desc = limitStr(books[3].desc, 100);} catch {books[3].desc = "";}
+    try {books[4].desc = requestResult.items[4].volumeInfo.description; books[4].desc = limitStr(books[4].desc, 100);} catch {books[4].desc = "";}
+    try {books[5].desc = requestResult.items[5].volumeInfo.description; books[5].desc = limitStr(books[5].desc, 100);} catch {books[5].desc = "";}
+
+    try {books[0].price = requestResult.items[0].saleInfo.listPrice.amount.toString() + " " + requestResult.items[0].saleInfo.listPrice.currencyCode;} catch {books[0].price = "";}
+    try {books[1].price = requestResult.items[1].saleInfo.listPrice.amount.toString() + " " + requestResult.items[1].saleInfo.listPrice.currencyCode;} catch {books[1].price = "";}
+    try {books[2].price = requestResult.items[2].saleInfo.listPrice.amount.toString() + " " + requestResult.items[2].saleInfo.listPrice.currencyCode;} catch {books[2].price = "";}
+    try {books[3].price = requestResult.items[3].saleInfo.listPrice.amount.toString() + " " + requestResult.items[3].saleInfo.listPrice.currencyCode;} catch {books[3].price = "";}
+    try {books[4].price = requestResult.items[4].saleInfo.listPrice.amount.toString() + " " + requestResult.items[4].saleInfo.listPrice.currencyCode;} catch {books[4].price = "";}
+    try {books[5].price = requestResult.items[5].saleInfo.listPrice.amount.toString() + " " + requestResult.items[5].saleInfo.listPrice.currencyCode;} catch {books[5].price = "";}
+
+    cardsContainer.innerHTML += `<div class="row">
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[0].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[0].authors}</p>
+                                          <p class="book-title">${books[0].title}</p>
+                                          <div class="rating" ${books[0].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">252 review</div>
+                                          </div>
+                                          <p class="book-desc">${books[0].desc}</p>
+                                          <p class="price">${books[0].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[1].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[1].authors}</p>
+                                          <p class="book-title">${books[1].title}</p>
+                                          <div class="rating" ${books[1].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">1,1M review</div>
+                                          </div>
+                                          <p class="book-desc">${books[1].desc}</p>
+                                          <p class="price">${books[1].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn buy-btn-in-the-card">In the cart</button>    
+                                          </form>
+                                      </div>
+                                  </div>
                                 </div>
-                                <div class="card">
-                                    <div class="img"><img src="img4.png" alt=""></div>
-                                    <div class="desc">
-                                        <p class="author">Tara Westover</p>
-                                        <p class="book-title">Educated</p>
-                                        <div class="rating">
-                                            <div class="pale-stars"></div>
-                                            <div class="stars" style="width: 27px"></div>
-                                            <div class="review-amount">364 review</div>
-                                        </div>
-                                        <div class="book-desc">It is a tale of fierce family loyalty and of the grief that comes with severing the closest of ties. With...</div>
-                                        <p class="price">$12.68</p>
-                                        <form action="">
-                                            <button class="buy-btn">buy now</button>    
-                                        </form>
-                                    </div>
+                                <div class="row">
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[2].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[2].authors}</p>
+                                          <p class="book-title">${books[2].title}</p>
+                                          <div class="rating" ${books[2].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">1,3M review</div>
+                                          </div>
+                                          <p class="book-desc">${books[2].desc}</p>
+                                          <p class="price">${books[2].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[3].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[3].authors}</p>
+                                          <p class="book-title">${books[3].title}</p>
+                                          <div class="rating" ${books[3].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">364 review</div>
+                                          </div>
+                                          <p class="book-desc">${books[3].desc}</p>
+                                          <p class="price">${books[3].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="row">
-                                <div class="card">
-                                    <div class="img"><img src="img5.png" alt=""></div>
-                                    <div class="desc">
-                                        <p class="author">Marianne Fritz</p>
-                                        <p class="book-title">The weight of things</p>
-                                        <div class="rating">
-                                            <div class="pale-stars"></div>
-                                            <div class="stars" style="width: 60px"></div>
-                                            <div class="review-amount">353 review</div>
-                                        </div>
-                                        <div class="book-desc">You discover not an eccentric fluke of literary nature but rather a brilliant and masterful satiris...</div>
-                                        <p class="price">$18.23</p>
-                                        <form action="">
-                                            <button class="buy-btn">buy now</button>    
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="img"><img src="img6.png" alt=""></div>
-                                    <div class="desc">
-                                        <p class="author">Chris Power</p>
-                                        <p class="book-title">Mothers stories</p>
-                                        <div class="rating">
-                                            <div class="pale-stars"></div>
-                                            <div class="stars" style="width: 30px"></div>
-                                            <div class="review-amount">454 review</div>
-                                        </div>
-                                        <div class="book-desc">the stories in Mothers lay bare the emotional and psychic damage of life, love, and abandonment...</div>
-                                        <p class="price">$12.35</p>
-                                        <form action="">
-                                            <button class="buy-btn">buy now</button>    
-                                        </form>
-                                    </div>
-                                </div>
-                              </div>`;
+                                <div class="row">
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[4].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[4].authors}</p>
+                                          <p class="book-title">${books[4].title}</p>
+                                          <div class="rating" ${books[4].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">353 review</div>
+                                          </div>
+                                          <p class="book-desc">${books[4].desc}</p>
+                                          <p class="price">${books[4].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
+                                  <div class="card">
+                                      <div class="img"><img class="book-cover" src="${books[5].url}" alt=""></div>
+                                      <div class="desc">
+                                          <p class="author">${books[5].authors}</p>
+                                          <p class="book-title">${books[5].title}</p>
+                                          <div class="rating" ${books[5].ratingStyle}>
+                                              <div class="pale-stars"></div>
+                                              <div class="stars" style="width: 60px"></div>
+                                              <div class="review-amount">454 review</div>
+                                          </div>
+                                          <p class="book-desc">${books[5].desc}</p>
+                                          <p class="price">${books[5].price}</p>
+                                          <form action="">
+                                              <button class="buy-btn">buy now</button>    
+                                          </form>
+                                      </div>
+                                  </div>
+                                </div>`;
+  }
 }
 
 let prevCategoryObj = document.querySelector('.category-list-li1-js');
@@ -261,66 +630,94 @@ const cat14 = document.querySelector('.category-list-li14-js');
 const cat15 = document.querySelector('.category-list-li15-js');
 const cat16 = document.querySelector('.category-list-li16-js');
 
+const btnLoadMore = document.querySelector('.btn-load-more-js');
+
 cat1.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Architecture";
+  showCards(prevCategoryObj, this, "Architecture");
 })
 
 cat2.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Art";
+  showCards(prevCategoryObj, this, "Art");
 })
 
 cat3.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Autobiography";
+  showCards(prevCategoryObj, this, "Autobiography");
 })
 
 cat4.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Business";
+  showCards(prevCategoryObj, this, "Business");
 })
 
 cat5.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Crafts&Hobbies";
+  showCards(prevCategoryObj, this, "Crafts&Hobbies");
 })
 
 cat6.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Drama";
+  showCards(prevCategoryObj, this, "Drama");
 })
 
 cat7.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Fiction";
+  showCards(prevCategoryObj, this, "Fiction");
 })
 
 cat8.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Cooking";
+  showCards(prevCategoryObj, this, "Cooking");
 })
 
 cat9.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Health&Fitness";
+  showCards(prevCategoryObj, this, "Health&Fitness");
 })
 
 cat10.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "History";
+  showCards(prevCategoryObj, this, "History");
 })
 
 cat11.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Humor";
+  showCards(prevCategoryObj, this, "Humor");
 })
 
 cat12.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Poetry";
+  showCards(prevCategoryObj, this, "Poetry");
 })
 
 cat13.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Psychology";
+  showCards(prevCategoryObj, this, "Psychology");
 })
 
 cat14.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Science";
+  showCards(prevCategoryObj, this, "Science");
 })
 
 cat15.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Technology";
+  showCards(prevCategoryObj, this, "Technology");
 })
 
 cat16.addEventListener('click', function() {
-  showCards(prevCategoryObj, this);
+  booksCategory = "Travel";
+  showCards(prevCategoryObj, this, "Travel");
 })
+
+btnLoadMore.addEventListener('click', function(event) {
+  showMoreCards();
+  event.preventDefault();
+})
+
+document.addEventListener("DOMContentLoaded", function() {
+  booksCategory = "Architecture";
+  showCards(prevCategoryObj, cat1, "Architecture");
+  });

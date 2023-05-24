@@ -308,7 +308,7 @@
 
 .section2 .cards-container {
   margin-left: 196px;
-  min-height: 1234px;
+  min-height: 900px;
   z-index: 1;
   position: relative;
   display: flex;
@@ -333,6 +333,12 @@
   width: 212px;
   background: #EEECEC;
   box-shadow: 0px 24px 36px rgba(53, 49, 84, 0.28);
+  position: relative;
+}
+
+.section2 .book-cover {
+  height: 100%;
+  width: 100%;
 }
 
 .section2 .desc {
@@ -392,6 +398,7 @@
 }
 
 .section2 .card .buy-btn {
+  cursor: pointer;
   margin-top: 16px;
   width: 176px;
   height: 45px;
@@ -437,6 +444,27 @@
   font-size: 10px;
   line-height: 14px;
   color: #5C6A79;
+}
+
+.section2 .btn-load-more-div {
+  height: 160px;
+}
+
+.section2 .btn-load-more {
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 176px;
+  height: 45px;
+  border: 1px solid #4C3DB2;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 10px;
+  text-transform: uppercase;
+  color: #4C3DB2;
 }
 
 /*# sourceMappingURL=styles.css.map */
